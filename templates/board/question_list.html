@@ -1,40 +1,41 @@
 {% extends 'base.html' %}
 {% block style %}
-<style>
+  <style>
     a {
-        color: black;
-        text-decoration-line: none;
+      color: black;
+      text-decoration-line: none;
     }
-</style>
+  </style>
 {% endblock %}
 
 {% block content %}
-<div class="container my-3">
+  <div class="container my-3">
     <table class="table">
-        <thead>
+      <thead>
         <tr class="table-dark">
-            <th>번호</th>
-            <th>제목</th>
-            <th>작성일시</th>
+          <th>번호</th>
+          <th>제목</th>
+          <th>작성일시</th>
         </tr>
-        </thead>
-        <tbody>
+      </thead>
+      <tbody>
         {% if question_list %}
-        {% for question in question_list %}
-        <tr>
-            <td>{{ forloop.counter }}</td>
-            <td>
+          {% for question in question_list %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>
                 <a href="{% url 'board:detail' question.id %}">{{ question.subject }}</a>
-            </td>
-            <td>{{ question.create_date }}</td>
-        </tr>
-        {% endfor %}
+              </td>
+              <td>{{ question.create_date }}</td>
+            </tr>
+          {% endfor %}
         {% else %}
-        <tr>
+          <tr>
             <td colspan="3">질문이 없습니다.</td>
-        </tr>
+          </tr>
         {% endif %}
-        </tbody>
+      </tbody>
     </table>
-</div>
+    <a href="{% url 'board:question_create' %}" class="btn btn-primary">질문 등록하기</a>
+  </div>
 {% endblock %}
